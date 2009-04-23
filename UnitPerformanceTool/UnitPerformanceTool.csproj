@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7765A023-7D0F-4E25-B6F1-51E85E18577E}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{9E6CE4B1-316B-4CCD-B822-8BF9BBBE63DC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestPerformance</RootNamespace>
-    <AssemblyName>TestPerformance</AssemblyName>
+    <RootNamespace>UnitPerformanceTool</RootNamespace>
+    <AssemblyName>UnitPerformanceTool</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -45,13 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestFixture1.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UnitPerformanceTool\UnitPerformanceTool.csproj">
-      <Project>{9E6CE4B1-316B-4CCD-B822-8BF9BBBE63DC}</Project>
-      <Name>UnitPerformanceTool</Name>
+    <ProjectReference Include="..\MfGames\MfGames.csproj">
+      <Project>{3BABBE73-CD1D-494E-A81F-E4EA40107FA9}</Project>
+      <Name>MfGames</Name>
     </ProjectReference>
     <ProjectReference Include="..\UnitPerformance\UnitPerformance.csproj">
       <Project>{79F3D85F-3509-41EB-8239-4DB92E816A7A}</Project>
