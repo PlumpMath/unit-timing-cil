@@ -5,12 +5,20 @@
     <Sharing>SOLUTION</Sharing>
     <CSharp>
       <FormatSettings>
+        <BLANK_LINES_AROUND_SINGLE_LINE_INVOCABLE>1</BLANK_LINES_AROUND_SINGLE_LINE_INVOCABLE>
         <BLANK_LINES_BETWEEN_USING_GROUPS>1</BLANK_LINES_BETWEEN_USING_GROUPS>
-        <BLANK_LINES_INSIDE_REGION>0</BLANK_LINES_INSIDE_REGION>
         <CASE_BLOCK_BRACES>NEXT_LINE</CASE_BLOCK_BRACES>
+        <EMPTY_BLOCK_STYLE>TOGETHER</EMPTY_BLOCK_STYLE>
         <FORCE_ATTRIBUTE_STYLE>SEPARATE</FORCE_ATTRIBUTE_STYLE>
+        <FORCE_FIXED_BRACES_STYLE>ALWAYS_ADD</FORCE_FIXED_BRACES_STYLE>
+        <FORCE_FOR_BRACES_STYLE>ALWAYS_ADD</FORCE_FOR_BRACES_STYLE>
+        <FORCE_FOREACH_BRACES_STYLE>ALWAYS_ADD</FORCE_FOREACH_BRACES_STYLE>
+        <FORCE_IFELSE_BRACES_STYLE>ALWAYS_ADD</FORCE_IFELSE_BRACES_STYLE>
+        <FORCE_USING_BRACES_STYLE>ALWAYS_ADD</FORCE_USING_BRACES_STYLE>
+        <FORCE_WHILE_BRACES_STYLE>ALWAYS_ADD</FORCE_WHILE_BRACES_STYLE>
         <INDENT_CASE_FROM_SWITCH>False</INDENT_CASE_FROM_SWITCH>
         <INDENT_SIZE>4</INDENT_SIZE>
+        <INITIALIZER_BRACES>NEXT_LINE</INITIALIZER_BRACES>
         <INSERT_TABS>True</INSERT_TABS>
         <KEEP_BLANK_LINES_IN_CODE>1</KEEP_BLANK_LINES_IN_CODE>
         <KEEP_BLANK_LINES_IN_DECLARATIONS>1</KEEP_BLANK_LINES_IN_DECLARATIONS>
@@ -45,6 +53,7 @@
         <WRAP_ARGUMENTS_STYLE>CHOP_IF_LONG</WRAP_ARGUMENTS_STYLE>
         <WRAP_BEFORE_EXTENDS_COLON>True</WRAP_BEFORE_EXTENDS_COLON>
         <WRAP_BEFORE_FIRST_TYPE_PARAMETER_CONSTRAINT>True</WRAP_BEFORE_FIRST_TYPE_PARAMETER_CONSTRAINT>
+        <WRAP_EXTENDS_LIST_STYLE>CHOP_IF_LONG</WRAP_EXTENDS_LIST_STYLE>
         <WRAP_LIMIT>80</WRAP_LIMIT>
         <WRAP_PARAMETERS_STYLE>CHOP_IF_LONG</WRAP_PARAMETERS_STYLE>
       </FormatSettings>
@@ -60,9 +69,11 @@
     </VB>
     <GenerateMemberBody />
     <Naming2>
+      <ExceptionName IsNull="False">
+      </ExceptionName>
       <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="aaBb" ElementKind="Locals" />
-      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="NotPublicInstanceFields" />
-      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="NotPublicStaticFields" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="aaBb" ElementKind="NotPublicInstanceFields" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="aaBb" ElementKind="NotPublicStaticFields" />
       <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="aaBb" ElementKind="Parameters" />
       <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="MethodPropertyEvent" />
       <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="TypesAndNamespaces" />

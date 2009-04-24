@@ -27,12 +27,27 @@ namespace UnitPerformance
 		/// <summary>
 		/// Initializes a new instance of the <see cref="PerformanceAttribute"/> class.
 		/// </summary>
-		/// <param name="runs">The runs.</param>
-		public PerformanceAttribute(params int[] runs)
+		/// <param name="iterations">The runs.</param>
+		public PerformanceAttribute(params int[] iterations)
 		{
-
+			this.iterations = iterations;
 		}
 
 		#endregion Constructors
+
+		#region Fields
+
+		private readonly int [] iterations;
+
+		/// <summary>
+		/// Gets the iterations for this run.
+		/// </summary>
+		/// <value>The iterations.</value>
+		public int [] Iterations
+		{
+			get { return iterations; }
+		}
+
+		#endregion
 	}
 }

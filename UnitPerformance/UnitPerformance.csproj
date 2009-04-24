@@ -45,6 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyRunner.cs" />
+    <Compile Include="Collections\MethodRunnerList.cs" />
+    <Compile Include="MethodRunner.cs" />
+    <Compile Include="PerformanceBaselineAttribute.cs" />
+    <Compile Include="Runner.cs" />
+    <Compile Include="Status\CompositeStatusListener.cs" />
+    <Compile Include="Status\ConsoleStatusListener.cs" />
+    <Compile Include="Status\IStatusListener.cs" />
     <Compile Include="PerformanceAttribute.cs" />
     <Compile Include="PerformanceFixtureAttribute.cs" />
     <Compile Include="PerformanceFixtureSetupAttribute.cs" />

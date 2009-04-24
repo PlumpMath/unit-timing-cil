@@ -13,7 +13,7 @@ namespace TestPerformance
 
 		#region Performance Units
 
-		[Performance(1, 2, 4)]
+		[Performance(1, 2, 4, 16)]
 		public void Test1()
 		{
 			Thread.Sleep(250);
