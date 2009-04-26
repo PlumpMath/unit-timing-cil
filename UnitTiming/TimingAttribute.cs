@@ -30,23 +30,37 @@ namespace UnitTiming
 		/// <param name="iterations">The runs.</param>
 		public TimingAttribute(params int[] iterations)
 		{
-			this.iterations = iterations;
+			if (iterations == null || iterations.Length == 0)
+			{
+				this.iterations = new int[] { 1 };
+			}
+			else
+			{
+				this.iterations = iterations;
+			}
 		}
 
 		#endregion Constructors
 
 		#region Fields
 
-		private readonly int [] iterations;
+		private readonly int[] iterations;
 
 		/// <summary>
 		/// Gets the iterations for this run.
 		/// </summary>
 		/// <value>The iterations.</value>
-		public int [] Iterations
+		public int[] Iterations
 		{
 			get { return iterations; }
 		}
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this test should only be run once, with
+		/// a given signature.
+		/// </summary>
+		/// <value><c>true</c> if singleton; otherwise, <c>false</c>.</value>
+		public bool Singleton { get; set; }
 
 		#endregion
 	}

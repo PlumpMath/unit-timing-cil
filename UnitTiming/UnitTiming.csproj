@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MethodSignature.cs" />
+    <Compile Include="Status\TimingResultsArgs.cs" />
     <Compile Include="TypeRunner.cs" />
     <Compile Include="Collections\MethodRunnerList.cs" />
     <Compile Include="MethodRunner.cs" />
@@ -62,12 +63,7 @@
     <Compile Include="TimingSetupAttribute.cs" />
     <Compile Include="TimingTeardownAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MfGames\MfGames.csproj">
-      <Project>{3BABBE73-CD1D-494E-A81F-E4EA40107FA9}</Project>
-      <Name>MfGames</Name>
-    </ProjectReference>
+    <Compile Include="MethodRunnerCompiler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

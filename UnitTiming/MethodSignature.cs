@@ -5,21 +5,21 @@
 		/// <summary>
 		/// Unknown signature method.
 		/// </summary>
-		Unknown,
+		Unknown = -1,
 
 		/// <summary>
 		/// No parameters in the method.
 		/// </summary>
-		Zero,
+		Zero = 0,
 
 		/// <summary>
 		/// The method has a single iteration, that takes an integer.
 		/// </summary>
-		CountInt32,
+		CountInt32 = 1,
 
 		/// <summary>
 		/// The method takes an iteration counter and a maximum amount.
 		/// </summary>
-		CountIterationInt32,
+		CountIterationInt32 = 2,
 	}
 }

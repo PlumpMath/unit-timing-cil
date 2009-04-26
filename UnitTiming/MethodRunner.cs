@@ -17,16 +17,16 @@ namespace UnitTiming
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MethodRunner"/> class.
 		/// </summary>
-		/// <param name="assemblyRunner">The assembly runner.</param>
+		/// <param name="typeRunner">The assembly runner.</param>
 		/// <param name="method">The method.</param>
 		/// <param name="target">The target.</param>
 		/// <param name="methodSignature">The method signature.</param>
-		public MethodRunner(TypeRunner assemblyRunner, MethodInfo method, object target, MethodSignature methodSignature)
+		public MethodRunner(TypeRunner typeRunner, MethodInfo method, object target, MethodSignature methodSignature)
 		{
 			// Check for null arguments.
-			if (assemblyRunner == null)
+			if (typeRunner == null)
 			{
-				throw new ArgumentNullException("assemblyRunner");
+				throw new ArgumentNullException("typeRunner");
 			}
 
 			if (method == null)
@@ -40,7 +40,7 @@ namespace UnitTiming
 			}
 
 			// Save the parameters into fields.
-			this.assemblyRunner = assemblyRunner;
+			this.typeRunner = typeRunner;
 			this.method = method;
 			this.target = target;
 			this.methodSignature = methodSignature;
@@ -50,36 +50,37 @@ namespace UnitTiming
 
 		#region Running
 
+
 		/// <summary>
-		/// Runs the specified iterator and maximum.
+		/// Gets the execution time.
 		/// </summary>
-		/// <param name="iterator">The iterator.</param>
-		/// <param name="maximum">The maximum.</param>
-		public void Run(int iterator, int maximum)
+		/// <param name="iteration">The iteration.</param>
+		/// <returns></returns>
+		public TimeSpan GetExecutionTime(int iteration)
 		{
-			switch (MethodSignature)
+			// Dynamically generation the method.
+			if (dynamicMethod == null)
 			{
-			case MethodSignature.Zero:
-				method.Invoke(target, new object[] {});
-				break;
-			case MethodSignature.CountInt32:
-				method.Invoke(target, new object[] { iterator });
-				break;
-			case MethodSignature.CountIterationInt32:
-				method.Invoke(target, new object[] { iterator, maximum });
-				break;
+				dynamicMethod = MethodRunnerCompiler.CreateTestMethod(this);
 			}
+
+			// Run the dynamic method. It is important that nothing else is done
+			// between the type timestamps.
+			DateTime startTime = DateTime.UtcNow;
+			dynamicMethod(target, iteration);
+			return DateTime.UtcNow - startTime;
 		}
 
 		#endregion
 
 		#region Fields
 
-		private TypeRunner assemblyRunner;
+		private readonly TypeRunner typeRunner;
 		private readonly MethodInfo method;
 		private readonly MethodSignature methodSignature;
 		private readonly object target;
 		private TimingAttribute performanceAttribute = new TimingAttribute(1);
+		private DynamicUnitTiming dynamicMethod;
 
 		/// <summary>
 		/// Gets or sets the performance attribute.
@@ -89,6 +90,15 @@ namespace UnitTiming
 		{
 			get { return performanceAttribute; }
 			set { performanceAttribute = value ?? new TimingAttribute(1); }
+		}
+
+		/// <summary>
+		/// Gets the method that will be called.
+		/// </summary>
+		/// <value>The method.</value>
+		public MethodInfo Method
+		{
+			get { return method; }
 		}
 
 		/// <summary>

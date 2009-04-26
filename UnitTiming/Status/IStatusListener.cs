@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace UnitTiming.Status
 {
@@ -19,6 +20,31 @@ namespace UnitTiming.Status
 		void StartLoadingType(Type type);
 
 		void EndLoadingType(Type type);
+
+		#endregion
+
+		#region Timing
+
+		/// <summary>
+		/// Reports that a timing method was found.
+		/// </summary>
+		/// <param name="methodRunner">The method which is being added.</param>
+		void AddTimingMethod(MethodRunner methodRunner);
+
+		/// <summary>
+		/// Reports that a method is beginning its timing run.
+		/// 
+		/// The same argument object is used for the start and end, but the
+		/// Time will not be populated until the EndTimingMethod call.
+		/// </summary>
+		/// <param name="args">The shared arguments for timing information.</param>
+		void StartTimingMethod(TimingResultsArgs args);
+
+		/// <summary>
+		/// Reports the results of a single timing run.
+		/// </summary>
+		/// <param name="args">The shared arguments for timing information.</param>
+		void EndTimingMethod(TimingResultsArgs args);
 
 		#endregion
 	}

@@ -5,7 +5,7 @@ namespace UnitTiming.Collections
 	/// <summary>
 	/// Encapsulates the list of method runners.
 	/// </summary>
-	public class MethodRunnerList
+	internal class MethodRunnerList
 		: List<MethodRunner>
 	{
 	}

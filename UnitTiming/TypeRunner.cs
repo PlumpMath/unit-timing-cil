@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 
 using UnitTiming.Collections;
+using UnitTiming.Status;
 
 namespace UnitTiming
 {
@@ -67,6 +68,14 @@ namespace UnitTiming
 		#endregion
 
 		#region Baseline Methods
+
+		public void LookAtMe(object target, int iterator)
+		{
+			for (int count = 0; count < iterator; count++)
+			{
+				Baseline();
+			}
+		}
 
 		/// <summary>
 		/// Implements the basic baseline method for testing.
@@ -139,15 +148,17 @@ namespace UnitTiming
 		/// </summary>
 		private void CreateFixture()
 		{
+			// Create the object in question so we can target tasks.
 			ConstructorInfo constructor = type.GetConstructor(new Type[] { });
 
-			if (constructor == null)
+			if (constructor != null)
+			{
+				fixture = constructor.Invoke(new object[] { });
+			}
+			else
 			{
 				runner.StatusListener.Error("Type does not have empty constructor");
 			}
-
-			// Create the object in question so we can target tasks.
-			fixture = constructor.Invoke(new object[] { });
 		}
 
 		/// <summary>
@@ -245,8 +256,12 @@ namespace UnitTiming
 				return;
 			}
 
+			// Add this as an actual timing unit.
 			methodRunner.TimingAttribute = (TimingAttribute) attribute;
 			methods.Add(methodRunner);
+
+			// Report that this method has been added.
+			runner.StatusListener.AddTimingMethod(methodRunner);
 		}
 
 		private void ParseTimingBaseline(
@@ -364,6 +379,17 @@ namespace UnitTiming
 		#region Running
 
 		/// <summary>
+		/// Gets the baseline execution time for a given signature and iteration.
+		/// </summary>
+		/// <param name="iteration">The iteration.</param>
+		/// <param name="methodSignature">The method signature.</param>
+		/// <returns></returns>
+		private TimeSpan GetBaselineExecutionTime(MethodSignature methodSignature, int iteration)
+		{
+			return baselineMethods[(int) methodSignature].GetExecutionTime(iteration);
+		}
+
+		/// <summary>
 		/// Runs the various assembly tests.
 		/// </summary>
 		public void Run()
@@ -408,80 +434,36 @@ namespace UnitTiming
 			// Go through the performance tests.
 			foreach (MethodRunner methodRunner in methods)
 			{
-				// Keep track of the execution time, in ticks.
-				var executionTime = new TimeSpan();
-
 				// Go through the iterations for the performance.
 				foreach (int iteration in methodRunner.TimingAttribute.Iterations)
 				{
-					// Get the time to run the baseline and also the time to run the performance unit.
-					TimeSpan baselineTime = GetBaselineExecutionTime(methodRunner.
-					                                                 	MethodSignature, iteration);
-					TimeSpan methodTime = GetExecutionTime(methodRunner, iteration);
-					executionTime += (methodTime - baselineTime);
+					// Get the time to run the baseline. The normal baseline will probably be
+					// zero, but the user may give a longer-running one.
+					TimeSpan baselineTime = GetBaselineExecutionTime(methodRunner.MethodSignature, iteration);
+
+					// Report that we are starting to run the timing.
+					var timingResults = new TimingResultsArgs
+					{
+						Iterations = iteration,
+						Method = methodRunner.Method,
+						BaselineTime = baselineTime,
+					};
+					Runner.StatusListener.StartTimingMethod(timingResults);
+
+					TimeSpan methodTime = methodRunner.GetExecutionTime(iteration);
 
 					// Report the results of the timing.
-					Console.WriteLine("Time to run: {0}", executionTime);
+					timingResults.Time = (methodTime - baselineTime);
+					runner.StatusListener.EndTimingMethod(timingResults);
 				}
 			}
 		}
 
 		#endregion
 
-		#region Running - Baseline
-
-		/// <summary>
-		/// Gets the baseline execution time for a given signature and iteration.
-		/// </summary>
-		/// <param name="iteration">The iteration.</param>
-		/// <param name="methodSignature">The method signature.</param>
-		/// <returns></returns>
-		private TimeSpan GetBaselineExecutionTime(MethodSignature methodSignature, int iteration)
-		{
-			switch (methodSignature)
-			{
-			case MethodSignature.Zero:
-				return GetExecutionTime(baselineMethods[0], iteration);
-			case MethodSignature.CountInt32:
-				return GetExecutionTime(baselineMethods[1], iteration);
-			case MethodSignature.CountIterationInt32:
-				return GetExecutionTime(baselineMethods[2], iteration);
-			default:
-				throw new Exception("Cannot parse signature: " + methodSignature);
-			}
-		}
-
-		/// <summary>
-		/// Gets the execution time.
-		/// </summary>
-		/// <param name="methodRunner">The method runner.</param>
-		/// <param name="iteration">The iteration.</param>
-		/// <returns></returns>
-		private static TimeSpan GetExecutionTime(MethodRunner methodRunner, int iteration)
-		{
-			// Run the setup functions.
-
-			// Loop through the iterations. It is very important to minimum
-			// the processing in this stanza.
-			DateTime startTime = DateTime.UtcNow;
-
-			for (int run = 0; run < iteration; run++)
-			{
-				methodRunner.Run(run, iteration);
-			}
-
-			// Run the teardown methods.
-
-			// Return the results of the execution.
-			return DateTime.UtcNow - startTime;
-		}
-
-		#endregion
-
 		#region Fields
 
-		private readonly MethodRunner[] baselineMethods = new MethodRunner[]
-		                                                  { null, null, null };
+		private readonly MethodRunner[] baselineMethods = new MethodRunner[3];
 
 		private readonly List<MethodInfo> fixtureSetupMethods = new List<MethodInfo>();
 
@@ -495,6 +477,15 @@ namespace UnitTiming
 		private readonly MethodRunnerList teardownMethods = new MethodRunnerList();
 		private readonly Type type;
 		private object fixture;
+
+		/// <summary>
+		/// Gets the top-most runner object.
+		/// </summary>
+		/// <value>The runner.</value>
+		public Runner Runner
+		{
+			get { return runner; }
+		}
 
 		#endregion
 	}
