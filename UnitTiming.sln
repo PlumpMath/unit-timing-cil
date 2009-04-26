@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitPerformance", "UnitPerformance\UnitPerformance.csproj", "{79F3D85F-3509-41EB-8239-4DB92E816A7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTiming", "UnitTiming\UnitTiming.csproj", "{79F3D85F-3509-41EB-8239-4DB92E816A7A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPerformance", "TestPerformance\TestPerformance.csproj", "{7765A023-7D0F-4E25-B6F1-51E85E18577E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MfGames", "MfGames\MfGames.csproj", "{3BABBE73-CD1D-494E-A81F-E4EA40107FA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitPerformanceTool", "UnitPerformanceTool\UnitPerformanceTool.csproj", "{9E6CE4B1-316B-4CCD-B822-8BF9BBBE63DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTimingTool", "UnitTimingTool\UnitTimingTool.csproj", "{9E6CE4B1-316B-4CCD-B822-8BF9BBBE63DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
