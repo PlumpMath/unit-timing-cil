@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UnitPerformance
+namespace UnitTiming
 {
 	/// <summary>
 	/// Defines a method which contains a performance unit test. This needs
@@ -19,16 +19,16 @@ namespace UnitPerformance
 	/// The accessiblity of the test is not important, but are typically public.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Method)]
-	public class PerformanceAttribute
+	public class TimingAttribute
 		: Attribute
 	{
 		#region Constructors
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="PerformanceAttribute"/> class.
+		/// Initializes a new instance of the <see cref="TimingAttribute"/> class.
 		/// </summary>
 		/// <param name="iterations">The runs.</param>
-		public PerformanceAttribute(params int[] iterations)
+		public TimingAttribute(params int[] iterations)
 		{
 			this.iterations = iterations;
 		}

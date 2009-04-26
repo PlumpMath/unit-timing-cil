@@ -1,19 +1,19 @@
 ﻿using System.Threading;
 
-using UnitPerformance;
+using UnitTiming;
 
-namespace TestPerformance
+namespace Tests
 {
-	[PerformanceFixture]
+	[TimingFixture]
 	public class TestFixture1
 	{
 		#region Setup and Teardown
 
 		#endregion
 
-		#region Performance Units
+		#region Timing Units
 
-		[Performance(1, 2, 4, 16)]
+		[Timing(1, 2, 4, 16, 32)]
 		public void Test1()
 		{
 			Thread.Sleep(250);

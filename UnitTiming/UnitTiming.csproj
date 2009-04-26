@@ -8,8 +8,8 @@
     <ProjectGuid>{79F3D85F-3509-41EB-8239-4DB92E816A7A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UnitPerformance</RootNamespace>
-    <AssemblyName>UnitPerformance</AssemblyName>
+    <RootNamespace>UnitTiming</RootNamespace>
+    <AssemblyName>UnitTiming</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -45,21 +45,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyRunner.cs" />
+    <Compile Include="MethodSignature.cs" />
+    <Compile Include="TypeRunner.cs" />
     <Compile Include="Collections\MethodRunnerList.cs" />
     <Compile Include="MethodRunner.cs" />
-    <Compile Include="PerformanceBaselineAttribute.cs" />
+    <Compile Include="TimingBaselineAttribute.cs" />
     <Compile Include="Runner.cs" />
     <Compile Include="Status\CompositeStatusListener.cs" />
     <Compile Include="Status\ConsoleStatusListener.cs" />
     <Compile Include="Status\IStatusListener.cs" />
-    <Compile Include="PerformanceAttribute.cs" />
-    <Compile Include="PerformanceFixtureAttribute.cs" />
-    <Compile Include="PerformanceFixtureSetupAttribute.cs" />
-    <Compile Include="PerformanceFixtureTeardownAttribute.cs" />
-    <Compile Include="PerformanceGroupAttribute.cs" />
-    <Compile Include="PerformanceSetupAttribute.cs" />
-    <Compile Include="PerformanceTeardownAttribute.cs" />
+    <Compile Include="TimingAttribute.cs" />
+    <Compile Include="TimingFixtureAttribute.cs" />
+    <Compile Include="TimingFixtureSetupAttribute.cs" />
+    <Compile Include="TimingFixtureTeardownAttribute.cs" />
+    <Compile Include="TimingGroupAttribute.cs" />
+    <Compile Include="TimingSetupAttribute.cs" />
+    <Compile Include="TimingTeardownAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

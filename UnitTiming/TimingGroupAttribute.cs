@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UnitPerformance
+namespace UnitTiming
 {
 	/// <summary>
 	/// Defines a common performance group. This is used for the output
@@ -9,7 +9,7 @@ namespace UnitPerformance
 	/// of runs.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
-	public class PerformanceGroupAttribute
+	public class TimingGroupAttribute
 		: Attribute
 	{
 	}

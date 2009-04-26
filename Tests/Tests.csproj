@@ -8,8 +8,8 @@
     <ProjectGuid>{7765A023-7D0F-4E25-B6F1-51E85E18577E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestPerformance</RootNamespace>
-    <AssemblyName>TestPerformance</AssemblyName>
+    <RootNamespace>Tests</RootNamespace>
+    <AssemblyName>Tests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -49,11 +49,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UnitPerformanceTool\UnitPerformanceTool.csproj">
+    <ProjectReference Include="..\UnitTimingTool\UnitTimingTool.csproj">
       <Project>{9E6CE4B1-316B-4CCD-B822-8BF9BBBE63DC}</Project>
       <Name>UnitPerformanceTool</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UnitPerformance\UnitPerformance.csproj">
+    <ProjectReference Include="..\UnitTiming\UnitTiming.csproj">
       <Project>{79F3D85F-3509-41EB-8239-4DB92E816A7A}</Project>
       <Name>UnitPerformance</Name>
     </ProjectReference>

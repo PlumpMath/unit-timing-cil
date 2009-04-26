@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
-namespace UnitPerformance.Status
+namespace UnitTiming.Status
 {
 	/// <summary>
 	/// Implements a composite listener that sends the various events
@@ -23,5 +24,37 @@ namespace UnitPerformance.Status
 		#region Status Events
 
 		#endregion Status Events
+
+		#region General Messages
+
+		public void Error(string message, params object[] args)
+		{
+			foreach (IStatusListener listener in listeners)
+			{
+				listener.Error(message, args);
+			}
+		}
+
+		#endregion
+
+		#region Type Loading
+
+		public void StartLoadingType(Type type)
+		{
+			foreach (IStatusListener listener in listeners)
+			{
+				listener.StartLoadingType(type);
+			}
+		}
+
+		public void EndLoadingType(Type type)
+		{
+			foreach (IStatusListener listener in listeners)
+			{
+				listener.EndLoadingType(type);
+			}
+		}
+
+		#endregion
 	}
 }

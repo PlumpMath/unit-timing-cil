@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace UnitPerformance
+namespace UnitTiming
 {
 	/// <summary>
 	/// Implements a runner that handles a method and the optional
@@ -19,21 +19,30 @@ namespace UnitPerformance
 		/// </summary>
 		/// <param name="assemblyRunner">The assembly runner.</param>
 		/// <param name="method">The method.</param>
-		public MethodRunner(AssemblyRunner assemblyRunner, MethodInfo method)
-			: this(assemblyRunner, method, method.GetParameters().Length)
-		{}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="MethodRunner"/> class.
-		/// </summary>
-		/// <param name="assemblyRunner">The assembly runner.</param>
-		/// <param name="method">The method.</param>
+		/// <param name="target">The target.</param>
 		/// <param name="methodSignature">The method signature.</param>
-		public MethodRunner(AssemblyRunner assemblyRunner, MethodInfo method, int methodSignature)
+		public MethodRunner(TypeRunner assemblyRunner, MethodInfo method, object target, MethodSignature methodSignature)
 		{
+			// Check for null arguments.
+			if (assemblyRunner == null)
+			{
+				throw new ArgumentNullException("assemblyRunner");
+			}
+
+			if (method == null)
+			{
+				throw new ArgumentNullException("method");
+			}
+
+			if (target == null)
+			{
+				throw new ArgumentNullException("target");
+			}
+
 			// Save the parameters into fields.
 			this.assemblyRunner = assemblyRunner;
 			this.method = method;
+			this.target = target;
 			this.methodSignature = methodSignature;
 		}
 
@@ -44,22 +53,21 @@ namespace UnitPerformance
 		/// <summary>
 		/// Runs the specified iterator and maximum.
 		/// </summary>
-		/// <param name="fixture">The fixture.</param>
 		/// <param name="iterator">The iterator.</param>
 		/// <param name="maximum">The maximum.</param>
-		public void Run(object fixture, int iterator, int maximum)
+		public void Run(int iterator, int maximum)
 		{
-			switch (Signature)
+			switch (MethodSignature)
 			{
-				case 0:
-					method.Invoke(fixture, null);
-					break;
-				case 1:
-					method.Invoke(fixture, new object[] { iterator });
-					break;
-				case 2:
-					method.Invoke(fixture, new object[] { iterator, maximum });
-					break;
+			case MethodSignature.Zero:
+				method.Invoke(target, new object[] {});
+				break;
+			case MethodSignature.CountInt32:
+				method.Invoke(target, new object[] { iterator });
+				break;
+			case MethodSignature.CountIterationInt32:
+				method.Invoke(target, new object[] { iterator, maximum });
+				break;
 			}
 		}
 
@@ -67,26 +75,27 @@ namespace UnitPerformance
 
 		#region Fields
 
-		private AssemblyRunner assemblyRunner;
+		private TypeRunner assemblyRunner;
 		private readonly MethodInfo method;
-		private readonly int methodSignature;
-		private PerformanceAttribute performanceAttribute = new PerformanceAttribute(1);
+		private readonly MethodSignature methodSignature;
+		private readonly object target;
+		private TimingAttribute performanceAttribute = new TimingAttribute(1);
 
 		/// <summary>
 		/// Gets or sets the performance attribute.
 		/// </summary>
 		/// <value>The performance attribute.</value>
-		public PerformanceAttribute PerformanceAttribute
+		public TimingAttribute TimingAttribute
 		{
 			get { return performanceAttribute; }
-			set { performanceAttribute = value ?? new PerformanceAttribute(1); }
+			set { performanceAttribute = value ?? new TimingAttribute(1); }
 		}
 
 		/// <summary>
 		/// Gets the signature.
 		/// </summary>
 		/// <value>The signature.</value>
-		public int Signature
+		public MethodSignature MethodSignature
 		{
 			get { return methodSignature; }
 		}

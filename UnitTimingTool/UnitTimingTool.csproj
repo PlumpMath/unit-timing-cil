@@ -8,8 +8,8 @@
     <ProjectGuid>{9E6CE4B1-316B-4CCD-B822-8BF9BBBE63DC}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UnitPerformanceTool</RootNamespace>
-    <AssemblyName>UnitPerformanceTool</AssemblyName>
+    <RootNamespace>UnitTimingTool</RootNamespace>
+    <AssemblyName>UnitTimingTool</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -53,7 +53,7 @@
       <Project>{3BABBE73-CD1D-494E-A81F-E4EA40107FA9}</Project>
       <Name>MfGames</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UnitPerformance\UnitPerformance.csproj">
+    <ProjectReference Include="..\UnitTiming\UnitTiming.csproj">
       <Project>{79F3D85F-3509-41EB-8239-4DB92E816A7A}</Project>
       <Name>UnitPerformance</Name>
     </ProjectReference>

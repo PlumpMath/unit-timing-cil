@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
-using UnitPerformance.Status;
+using UnitTiming.Status;
 
-namespace UnitPerformance
+namespace UnitTiming
 {
 	/// <summary>
 	/// The primary container for running a performance test. This handles the
@@ -32,7 +32,7 @@ namespace UnitPerformance
 
 		#region Assembly Loading
 
-		private readonly List<AssemblyRunner> assemblyRunners = new List<AssemblyRunner>();
+		private readonly List<TypeRunner> assemblyRunners = new List<TypeRunner>();
 
 		/// <summary>
 		/// Loads the assembly from the given file.
@@ -47,9 +47,9 @@ namespace UnitPerformance
 
 			foreach (Type type in assembly.GetTypes())
 			{
-				// See if the type implements the [PerformanceFixture].
+				// See if the type implements the [TimingFixture].
 				object[] attributes =
-					type.GetCustomAttributes(typeof(PerformanceFixtureAttribute), false);
+					type.GetCustomAttributes(typeof(TimingFixtureAttribute), false);
 
 				if (attributes.Length == 0)
 				{
@@ -57,7 +57,7 @@ namespace UnitPerformance
 				}
 
 				// Load this type into memory, pulling out the various tests.
-				assemblyRunners.Add(new AssemblyRunner(this, type));
+				assemblyRunners.Add(new TypeRunner(this, type));
 			}
 		}
 
@@ -70,7 +70,7 @@ namespace UnitPerformance
 		/// </summary>
 		public void Run()
 		{
-			foreach (AssemblyRunner assemblyRunner in assemblyRunners)
+			foreach (TypeRunner assemblyRunner in assemblyRunners)
 			{
 				assemblyRunner.Run();
 			}

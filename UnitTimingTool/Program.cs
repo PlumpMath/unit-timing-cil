@@ -1,10 +1,11 @@
 ﻿using System;
 using System.IO;
 
-using UnitPerformance;
-using UnitPerformance.Status;
+using UnitTiming.Status;
 
-namespace UnitPerformanceTool
+using UnitTiming;
+
+namespace UnitTimingTool
 {
 	/// <summary>
 	/// A simple tool for scanning DLL's and performing unit tests

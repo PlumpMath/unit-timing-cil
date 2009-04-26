@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace UnitPerformance.Collections
+namespace UnitTiming.Collections
 {
 	/// <summary>
 	/// Encapsulates the list of method runners.

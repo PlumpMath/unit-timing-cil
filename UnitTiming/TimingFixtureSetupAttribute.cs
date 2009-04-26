@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UnitPerformance
+namespace UnitTiming
 {
 	/// <summary>
 	/// Marks the method used to set up the performance units within
@@ -8,7 +8,7 @@ namespace UnitPerformance
 	/// is called in a given fixture.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Method)]
-	public class PerformanceFixtureSetupAttribute
+	public class TimingFixtureSetupAttribute
 		: Attribute
 	{
 	}
