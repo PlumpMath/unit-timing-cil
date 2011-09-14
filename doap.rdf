@@ -1,11 +1,22 @@
 <?xml version="1.0"?>
-<doap:Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+<Project xmlns="http://usefulinc.com/ns/doap#"
+	 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	 xmlns:dc="http://purl.org/dc/elements/1.1/"
-	 xmlns:foaf="http://xmlns.com/foaf/0.1/"
-	 xmlns:doap="http://usefulinc.com/ns/doap#">
-  <doap:name>Unit Timing CIL</doap:name>
-  <doap:homepage rdf:resource="http://mfgames.com/unit-timing-cil"/>
+	 xmlns:foaf="http://xmlns.com/foaf/0.1/">
+  <name>Unit Timing CIL</name>
+  <homepage rdf:resource="http://mfgames.com/unit-timing-cil"/>
 
-  <doap:shortdesc xml:lang="en">Framework for gathering timing information on unit blocks of code.</doap:shortdesc>
+  <shortdesc xml:lang="en">Framework for gathering timing information on unit blocks of code.</shortdesc>
+
+  <audience>Developers</audience>
+  <license rdf:resource="http://www.opensource.org/licenses/mit-license.php">MIT</license>
+  <programming-language>C#</programming-language>
+
+  <!-- Repositories -->
+  <repository>
+    <GitRepository>
+      <browse rdf:resource="https://github.com/dmoonfire/unit-timing-cil"/>
+    </GitRepository>
+  </repository>
 </Project>
